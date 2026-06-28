@@ -1,1 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Incoterms 2020 — Visual Guide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+:root {
+  --navy:#0D1B2A;--steel:#1C3549;--amber:#E8A020;--sea:#2B7A9E;
+  --green:#1A7A4A;--red:#C84B31;--fog:#8FA8BB;--mist:#D4E3EE;
+  --paper:#F0F5F9;--white:#fff;
+  --display:'Syne',sans-serif;--body:'Inter',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--body);background:var(--paper);color:var(--navy);}
 
+nav{background:var(--navy);height:60px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:var(--display);font-weight:800;font-size:1.2rem;color:var(--white);}
+.nav-logo span{color:var(--amber);}
+.nav-sub{font-family:var(--mono);font-size:0.68rem;color:var(--fog);}
+
+.hero{background:var(--navy);padding:3rem 2rem 2.5rem;text-align:center;}
+.eyebrow{font-family:var(--mono);font-size:0.68rem;color:var(--amber);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.75rem;}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,3rem);color:var(--white);letter-spacing:-0.03em;line-height:1.1;margin-bottom:0.75rem;}
+.hero h1 em{font-style:normal;color:var(--amber);}
+.hero p{color:var(--fog);font-size:0.95rem;max-width:520px;margin:0 auto 1.5rem;line-height:1.6;}
+
+/* MODE TOGGLE */
+.mode-bar{background:var(--steel);padding:1rem 2rem;display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;}
+.mode-btn{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.4rem 1rem;border-radius:4px;border:1.5px solid rgba(255,255,255,0.2);background:transparent;color:var(--mist);cursor:pointer;transition:all 0.15s;}
+.mode-btn.active,.mode-btn:hover{background:var(--amber);border-color:var(--amber);color:var(--navy);}
+
+.main{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 4rem;}
+
+/* RISK LEGEND */
+.legend{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:2rem;padding:1rem;background:var(--white);border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,0.06);}
+.legend-item{display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;font-family:var(--mono);}
+.legend-dot{width:12px;height:12px;border-radius:50%;}
+
+/* INCOTERM CARD */
+.incoterm-card{background:var(--white);border-radius:12px;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,0.07);overflow:hidden;border:1.5px solid transparent;transition:border-color 0.2s;}
+.incoterm-card:hover{border-color:var(--sea);}
+
+.card-header{padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;cursor:pointer;user-select:none;}
+.card-abbr{font-family:var(--display);font-weight:800;font-size:2rem;min-width:4rem;color:var(--navy);}
+.card-title-wrap{flex:1;}
+.card-title{font-family:var(--display);font-weight:700;font-size:1rem;color:var(--navy);}
+.card-subtitle{font-size:0.78rem;color:var(--fog);margin-top:0.2rem;}
+.card-badges{display:flex;gap:0.4rem;flex-wrap:wrap;margin-left:auto;}
+.badge{font-family:var(--mono);font-size:0.6rem;padding:0.25rem 0.55rem;border-radius:3px;letter-spacing:0.06em;font-weight:500;}
+.badge-mode{background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;}
+.badge-seller{background:#ECFDF5;color:#065F46;border:1px solid #6EE7B7;}
+.badge-buyer{background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;}
+.badge-any{background:#F5F3FF;color:#7C3AED;border:1px solid #DDD6FE;}
+.chevron{font-size:1rem;color:var(--fog);transition:transform 0.2s;margin-left:0.5rem;}
+.incoterm-card.open .chevron{transform:rotate(180deg);}
+
+.card-body{display:none;padding:0 1.5rem 1.5rem;border-top:1px solid var(--mist);}
+.incoterm-card.open .card-body{display:block;}
+
+/* VISUAL JOURNEY BAR */
+.journey{margin:1.25rem 0 1rem;}
+.journey-label{font-family:var(--mono);font-size:0.65rem;color:var(--fog);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.5rem;}
+.journey-track{position:relative;height:48px;background:var(--paper);border-radius:8px;display:flex;align-items:center;overflow:hidden;}
+.journey-seller{position:absolute;left:0;top:0;bottom:0;background:rgba(26,122,74,0.15);display:flex;align-items:center;justify-content:center;}
+.journey-buyer{position:absolute;right:0;top:0;bottom:0;background:rgba(200,75,49,0.1);display:flex;align-items:center;justify-content:center;}
+.journey-split{position:absolute;top:0;bottom:0;width:3px;background:var(--amber);z-index:2;}
+.journey-split::after{content:'▼ Risk transfers here';position:absolute;top:100%;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:0.55rem;color:var(--amber);white-space:nowrap;margin-top:2px;}
+.journey-end{position:absolute;font-family:var(--mono);font-size:0.6rem;font-weight:600;padding:0 0.5rem;}
+.journey-end.left{left:8px;color:var(--green);}
+.journey-end.right{right:8px;color:var(--red);}
+.journey-mid{position:absolute;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:0.55rem;color:var(--navy);z-index:3;text-align:center;white-space:nowrap;}
+
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;}
+.card-section h4{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--fog);margin-bottom:0.5rem;}
+.card-section ul{list-style:none;padding:0;}
+.card-section ul li{font-size:0.82rem;padding:0.25rem 0;border-bottom:1px solid var(--paper);display:flex;align-items:flex-start;gap:0.4rem;line-height:1.4;}
+.card-section ul li::before{content:'→';color:var(--sea);font-size:0.7rem;flex-shrink:0;margin-top:2px;}
+.card-def{font-size:0.85rem;color:#4A5568;line-height:1.6;margin-top:1rem;}
+
+.tip-box{margin-top:1rem;padding:0.75rem 1rem;background:#FFFBEB;border-left:3px solid var(--amber);border-radius:0 6px 6px 0;font-size:0.8rem;color:#92400E;line-height:1.5;}
+.tip-box strong{display:block;font-family:var(--mono);font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.25rem;}
+
+/* COMPARISON TABLE */
+.compare-section{background:var(--white);border-radius:12px;padding:1.5rem;margin-bottom:2rem;box-shadow:0 2px 8px rgba(0,0,0,0.07);}
+.compare-section h2{font-family:var(--display);font-weight:700;font-size:1.2rem;margin-bottom:1rem;}
+.compare-table{width:100%;border-collapse:collapse;font-size:0.78rem;}
+.compare-table th{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--fog);padding:0.5rem 0.75rem;text-align:left;border-bottom:2px solid var(--mist);}
+.compare-table td{padding:0.6rem 0.75rem;border-bottom:1px solid var(--paper);}
+.compare-table tr:hover td{background:var(--paper);}
+.dot-green{color:var(--green);font-size:1rem;}
+.dot-red{color:var(--red);font-size:1rem;}
+.dot-amber{color:var(--amber);font-size:1rem;}
+
+footer{background:var(--navy);color:var(--fog);text-align:center;padding:2rem;font-size:0.78rem;font-family:var(--mono);}
+footer strong{color:var(--amber);}
+
+@media(max-width:600px){
+  .card-grid{grid-template-columns:1fr;}
+  .card-badges{display:none;}
+  .compare-table{font-size:0.7rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Inco<span>Terms</span></div>
+  <div class="nav-sub">2020 VISUAL GUIDE · 11 TERMS</div>
+</nav>
+
+<header class="hero">
+  <p class="eyebrow">International Commercial Terms</p>
+  <h1>Who pays.<br>Who risks.<br><em>Exactly where.</em></h1>
+  <p>The complete visual breakdown of all 11 Incoterms 2020 — risk transfer points, seller vs buyer obligations, and when to use each one.</p>
+</header>
+
+<div class="mode-bar">
+  <button class="mode-btn active" onclick="filterMode('all')">All Incoterms</button>
+  <button class="mode-btn" onclick="filterMode('any')">Any Mode</button>
+  <button class="mode-btn" onclick="filterMode('sea')">Sea & Inland Only</button>
+  <button class="mode-btn" onclick="filterMode('seller')">Seller Friendly</button>
+  <button class="mode-btn" onclick="filterMode('buyer')">Buyer Friendly</button>
+</div>
+
+<main class="main">
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(26,122,74,0.4)"></div> Seller's responsibility</div>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(200,75,49,0.3)"></div> Buyer's responsibility</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div> Risk transfer point</div>
+</div>
+
+<div class="compare-section">
+  <h2>Quick Comparison — All 11 Incoterms</h2>
+  <div style="overflow-x:auto;">
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Term</th><th>Mode</th><th>Export Customs</th><th>Main Freight</th><th>Insurance</th><th>Import Customs</th><th>Import Duties</th><th>Best For</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>EXW</strong></td><td>Any</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Domestic pickup</td></tr>
+      <tr><td><strong>FCA</strong></td><td>Any</td><td class="dot-green">● Seller</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Air / multimodal</td></tr>
+      <tr><td><strong>CPT</strong></td><td>Any</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Air / courier</td></tr>
+      <tr><td><strong>CIP</strong></td><td>Any</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Air with insurance</td></tr>
+      <tr><td><strong>DAP</strong></td><td>Any</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Door delivery</td></tr>
+      <tr><td><strong>DPU</strong></td><td>Any</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Terminal delivery</td></tr>
+      <tr><td><strong>DDP</strong></td><td>Any</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td>Full seller control</td></tr>
+      <tr><td><strong>FAS</strong></td><td>Sea only</td><td class="dot-green">● Seller</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Bulk cargo</td></tr>
+      <tr><td><strong>FOB</strong></td><td>Sea only</td><td class="dot-green">● Seller</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Ocean freight</td></tr>
+      <tr><td><strong>CFR</strong></td><td>Sea only</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Ocean no insurance</td></tr>
+      <tr><td><strong>CIF</strong></td><td>Sea only</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Ocean with insurance</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div id="incotermsList"></div>
+
+</main>
+
+<footer><strong>Incoterms 2020</strong> &nbsp;·&nbsp; Published by ICC &nbsp;·&nbsp; Visual reference only — consult ICC official publications for legal use</footer>
+
+<script>
+const INCOTERMS = [
+  {
+    abbr:"EXW", name:"Ex Works", mode:"any", party:"buyer",
+    split:5,
+    sellerZone:"Seller's factory only",
+    buyerZone:"Everything from factory gate onward",
+    sellerDoes:["Makes goods available at named premises","Packages goods (unless agreed otherwise)","Provides commercial invoice and packing list"],
+    buyerDoes:["Arranges all transport from seller's door","Handles export customs clearance","Pays all freight, insurance, duties","Assumes all risk from pickup point"],
+    def:"The seller's minimum obligation. Goods are made available at the seller's premises. The buyer bears all costs and risks from that point. Rarely used for international trade as the buyer must handle export formalities in a foreign country.",
+    tip:"⚠️ Avoid EXW for international shipments — the buyer must clear export customs in the seller's country, which is often impractical. Use FCA instead.",
+    badges:["Any Mode","Buyer Pays All"]
+  },
+  {
+    abbr:"FCA", name:"Free Carrier", mode:"any", party:"buyer",
+    split:20,
+    sellerZone:"Export clearance + delivery to carrier",
+    buyerZone:"Main carriage + import",
+    sellerDoes:["Clears goods for export","Delivers goods to named carrier or location","Provides export documentation"],
+    buyerDoes:["Arranges and pays main international freight","Obtains cargo insurance (optional)","Handles import customs and duties"],
+    def:"The seller delivers goods to a named carrier at a named place. If the place is the seller's premises, the seller loads; otherwise the seller is not responsible for unloading. Risk transfers when goods are handed to the carrier.",
+    tip:"✅ Best replacement for EXW in international trade. Also ideal for air freight and multimodal shipments. FCA + seller's premises is the most common air freight term.",
+    badges:["Any Mode","Popular for Air"]
+  },
+  {
+    abbr:"CPT", name:"Carriage Paid To", mode:"any", party:"balanced",
+    split:35,
+    sellerZone:"Export + main freight paid",
+    buyerZone:"Risk during transit + import",
+    sellerDoes:["Clears goods for export","Contracts and pays for main carriage to named destination","Provides transport documents"],
+    buyerDoes:["Bears risk from when goods handed to first carrier","Arranges cargo insurance if desired","Handles import customs and duties"],
+    def:"The seller pays for carriage to the named destination, but risk transfers to the buyer when goods are handed to the first carrier. Note: the seller pays freight but the buyer bears the risk during transit.",
+    tip:"⚠️ Watch the risk/cost split: seller pays freight but buyer bears risk during the voyage. This is a common source of confusion.",
+    badges:["Any Mode","Seller Pays Freight"]
+  },
+  {
+    abbr:"CIP", name:"Carriage and Insurance Paid To", mode:"any", party:"balanced",
+    split:35,
+    sellerZone:"Export + freight + insurance",
+    buyerZone:"Risk during transit + import",
+    sellerDoes:["Clears goods for export","Pays for main carriage to named destination","Provides minimum 110% cargo insurance (Institute Cargo Clauses A — all risks)","Provides transport and insurance documents"],
+    buyerDoes:["Bears risk from when goods handed to first carrier","Handles import customs and duties"],
+    def:"Like CPT but the seller must also provide cargo insurance. CIP requires Institute Cargo Clauses A (all-risks) coverage — a higher standard than CIF. Suitable for containerized and air shipments.",
+    tip:"✅ CIP is better than CIF for containerized cargo. The insurance requirement is more comprehensive (ICC A vs ICC C for CIF).",
+    badges:["Any Mode","Seller Insures"]
+  },
+  {
+    abbr:"DAP", name:"Delivered at Place", mode:"any", party:"seller",
+    split:75,
+    sellerZone:"Export + freight + delivery to named place",
+    buyerZone:"Unloading + import duties",
+    sellerDoes:["Handles export clearance","Arranges and pays all transport to named destination","Bears all risk until goods are ready for unloading","Does NOT unload the goods"],
+    buyerDoes:["Unloads goods at destination","Handles import customs clearance","Pays import duties and taxes"],
+    def:"The seller delivers goods to a named place ready for unloading. The seller bears all risk and cost until delivery, except for import duties. The buyer handles import clearance and unloading.",
+    tip:"✅ Very popular for e-commerce and courier shipments. The seller controls the entire journey — good when the seller has established logistics networks.",
+    badges:["Any Mode","Door Delivery"]
+  },
+  {
+    abbr:"DPU", name:"Delivered at Place Unloaded", mode:"any", party:"seller",
+    split:80,
+    sellerZone:"Export + freight + unloading at terminal",
+    buyerZone:"Import duties + onward transport",
+    sellerDoes:["Handles export clearance","Arranges and pays all transport","Unloads goods at the named terminal or place","Bears risk until goods are unloaded"],
+    buyerDoes:["Handles import customs clearance","Pays import duties and taxes","Arranges onward transport if needed"],
+    def:"The only Incoterm where the seller is responsible for unloading at destination. The seller bears all risk until goods are unloaded at the named terminal. New in Incoterms 2020, replacing DAT.",
+    tip:"ℹ️ New in 2020. Formerly called DAT (Delivered at Terminal). Confirm the terminal can receive the seller's transport before using DPU.",
+    badges:["Any Mode","Seller Unloads"]
+  },
+  {
+    abbr:"DDP", name:"Delivered Duty Paid", mode:"any", party:"seller",
+    split:92,
+    sellerZone:"Everything — export, freight, insurance, import duties",
+    buyerZone:"Unloading only",
+    sellerDoes:["Handles all export customs","Pays all freight and insurance","Clears import customs in destination country","Pays all import duties and taxes","Delivers to named destination"],
+    buyerDoes:["Unloads goods (unless agreed otherwise)","Nothing else — maximum convenience"],
+    def:"Maximum obligation on the seller. The seller handles everything including import customs and duty payment in the buyer's country. The buyer simply receives the goods. Risk stays with the seller until delivery.",
+    tip:"⚠️ Sellers must be able to act as importer of record in the destination country. Many sellers avoid DDP because they can't register as importers abroad. Use DAP + let the buyer handle duties instead.",
+    badges:["Any Mode","Seller Does All"]
+  },
+  {
+    abbr:"FAS", name:"Free Alongside Ship", mode:"sea", party:"buyer",
+    split:18,
+    sellerZone:"Export clearance + delivery alongside vessel",
+    buyerZone:"Loading + main freight + import",
+    sellerDoes:["Clears goods for export","Delivers goods alongside the named vessel at port of shipment","Risk ends when goods are placed alongside ship"],
+    buyerDoes:["Loads goods onto the vessel","Arranges and pays ocean freight","Obtains insurance","Handles import customs and duties"],
+    def:"The seller delivers goods alongside the vessel at the named port of shipment. Used for bulk cargo (grain, coal, ore) where goods are delivered by conveyor or barge alongside the ship, not in containers.",
+    tip:"ℹ️ FAS is used almost exclusively for bulk commodities. Not suitable for containerized cargo — use FCA instead.",
+    badges:["Sea Only","Bulk Cargo"]
+  },
+  {
+    abbr:"FOB", name:"Free On Board", mode:"sea", party:"buyer",
+    split:25,
+    sellerZone:"Export clearance + loaded onto vessel",
+    buyerZone:"Ocean freight + insurance + import",
+    sellerDoes:["Clears goods for export","Loads goods onto the vessel at named port","Risk and cost transfer once goods are on board"],
+    buyerDoes:["Pays ocean freight","Obtains cargo insurance","Bears risk from the moment goods are on board","Handles import customs and duties"],
+    def:"One of the most commonly used Incoterms. The seller loads goods onto the nominated vessel. Risk transfers once goods are on board. FOB should only be used for non-containerized ocean freight — not for containers (use FCA instead).",
+    tip:"⚠️ FOB is frequently misused for containerized cargo. Once goods are in a container at the terminal, the seller has lost control. Use FCA for container shipments. FOB is correct for bulk/breakbulk cargo.",
+    badges:["Sea Only","Very Common"]
+  },
+  {
+    abbr:"CFR", name:"Cost and Freight", mode:"sea", party:"balanced",
+    split:25,
+    sellerZone:"Export + ocean freight paid",
+    buyerZone:"Risk during voyage + insurance + import",
+    sellerDoes:["Clears goods for export","Loads goods onto vessel","Pays ocean freight to destination port","Provides bill of lading"],
+    buyerDoes:["Bears all risk from the moment goods are on board","Arranges cargo insurance","Handles import customs and duties"],
+    def:"The seller pays ocean freight to the destination port, but risk transfers when goods are loaded on board the vessel at the port of shipment. Like FOB but the seller pays freight. Should only be used for non-containerized cargo.",
+    tip:"⚠️ Same container-use warning as FOB — seller pays freight but risk passes at origin port. Buyer has risk during the voyage they didn't book. Consider CIP for air or containerized shipments.",
+    badges:["Sea Only","Seller Pays Freight"]
+  },
+  {
+    abbr:"CIF", name:"Cost, Insurance and Freight", mode:"sea", party:"balanced",
+    split:25,
+    sellerZone:"Export + ocean freight + minimum insurance",
+    buyerZone:"Risk during voyage + import",
+    sellerDoes:["Clears goods for export","Loads goods onto vessel","Pays ocean freight to destination port","Provides minimum cargo insurance (Institute Cargo Clauses C)","Provides bill of lading and insurance certificate"],
+    buyerDoes:["Bears risk from when goods are loaded on vessel","Handles import customs and duties","May want to purchase additional insurance"],
+    def:"The seller pays freight and minimum insurance to the destination port. However, risk transfers at the origin port when goods are loaded. CIF is commonly used for commodity trade and letter of credit transactions. Note: CIF insurance (ICC C) is minimum coverage only.",
+    tip:"ℹ️ CIF insurance is minimum (ICC C — named perils only). For better coverage use CIP which requires ICC A (all-risks). CIF is heavily used in commodity trade because L/C banks require it.",
+    badges:["Sea Only","Seller Insures"]
+  }
+];
+
+function buildCard(t) {
+  const splitPct = t.split;
+  return `
+  <div class="incoterm-card" data-mode="${t.mode}" data-party="${t.party}" id="card-${t.abbr}">
+    <div class="card-header" onclick="toggleCard('${t.abbr}')">
+      <div class="card-abbr">${t.abbr}</div>
+      <div class="card-title-wrap">
+        <div class="card-title">${t.name}</div>
+        <div class="card-subtitle">${t.mode === 'sea' ? '🚢 Sea & inland waterway only' : '✈️ Any mode of transport'}</div>
+      </div>
+      <div class="card-badges">
+        ${t.badges.map(b => `<span class="badge badge-mode">${b}</span>`).join('')}
+      </div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="card-body">
+      <div class="journey">
+        <div class="journey-label">Risk & cost responsibility</div>
+        <div class="journey-track">
+          <div class="journey-seller" style="width:${splitPct}%">
+            <span class="journey-end left">🏭 SELLER</span>
+          </div>
+          <div class="journey-buyer" style="width:${100-splitPct}%">
+            <span class="journey-end right">🏢 BUYER</span>
+          </div>
+          <div class="journey-split" style="left:${splitPct}%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:1.5rem;font-family:var(--mono);font-size:0.6rem;color:var(--fog);">
+          <span>← Seller pays & bears risk</span>
+          <span>Buyer pays & bears risk →</span>
+        </div>
+      </div>
+      <p class="card-def">${t.def}</p>
+      <div class="card-grid">
+        <div class="card-section">
+          <h4>🟢 Seller is responsible for</h4>
+          <ul>${t.sellerDoes.map(d=>`<li>${d}</li>`).join('')}</ul>
+        </div>
+        <div class="card-section">
+          <h4>🔴 Buyer is responsible for</h4>
+          <ul>${t.buyerDoes.map(d=>`<li>${d}</li>`).join('')}</ul>
+        </div>
+      </div>
+      <div class="tip-box"><strong>Pro Tip</strong>${t.tip}</div>
+    </div>
+  </div>`;
+}
+
+function toggleCard(abbr) {
+  const card = document.getElementById('card-'+abbr);
+  card.classList.toggle('open');
+}
+
+function filterMode(mode) {
+  document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.incoterm-card').forEach(c=>{
+    const m = c.dataset.mode;
+    const p = c.dataset.party;
+    let show = true;
+    if(mode==='sea') show = m==='sea';
+    else if(mode==='any') show = m==='any';
+    else if(mode==='seller') show = p==='seller';
+    else if(mode==='buyer') show = p==='buyer';
+    c.style.display = show ? '' : 'none';
+  });
+}
+
+document.getElementById('incotermsList').innerHTML = INCOTERMS.map(buildCard).join('');
+</script>
+</body>
+</html>
