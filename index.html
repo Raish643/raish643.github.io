@@ -3,698 +3,362 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ClearPath — Customs Trade Glossary</title>
+<title>Incoterms 2020 — Visual Guide</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+:root {
+  --navy:#0D1B2A;--steel:#1C3549;--amber:#E8A020;--sea:#2B7A9E;
+  --green:#1A7A4A;--red:#C84B31;--fog:#8FA8BB;--mist:#D4E3EE;
+  --paper:#F0F5F9;--white:#fff;
+  --display:'Syne',sans-serif;--body:'Inter',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--body);background:var(--paper);color:var(--navy);}
 
-  :root {
-    --navy: #0D1B2A;
-    --steel: #1C3549;
-    --ink: #17283A;
-    --cargo-red: #C84B31;
-    --amber: #E8A020;
-    --sea: #2B7A9E;
-    --fog: #8FA8BB;
-    --mist: #D4E3EE;
-    --paper: #F0F5F9;
-    --white: #FFFFFF;
-    --mono: 'JetBrains Mono', monospace;
-    --display: 'Syne', sans-serif;
-    --body: 'Inter', sans-serif;
-  }
+nav{background:var(--navy);height:60px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:var(--display);font-weight:800;font-size:1.2rem;color:var(--white);}
+.nav-logo span{color:var(--amber);}
+.nav-sub{font-family:var(--mono);font-size:0.68rem;color:var(--fog);}
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.hero{background:var(--navy);padding:3rem 2rem 2.5rem;text-align:center;}
+.eyebrow{font-family:var(--mono);font-size:0.68rem;color:var(--amber);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.75rem;}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,3rem);color:var(--white);letter-spacing:-0.03em;line-height:1.1;margin-bottom:0.75rem;}
+.hero h1 em{font-style:normal;color:var(--amber);}
+.hero p{color:var(--fog);font-size:0.95rem;max-width:520px;margin:0 auto 1.5rem;line-height:1.6;}
 
-  html { scroll-behavior: smooth; }
+/* MODE TOGGLE */
+.mode-bar{background:var(--steel);padding:1rem 2rem;display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;}
+.mode-btn{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.4rem 1rem;border-radius:4px;border:1.5px solid rgba(255,255,255,0.2);background:transparent;color:var(--mist);cursor:pointer;transition:all 0.15s;}
+.mode-btn.active,.mode-btn:hover{background:var(--amber);border-color:var(--amber);color:var(--navy);}
 
-  body {
-    font-family: var(--body);
-    background: var(--paper);
-    color: var(--navy);
-    min-height: 100vh;
-  }
+.main{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 4rem;}
 
-  /* ── NAV ── */
-  nav {
-    background: var(--navy);
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+/* RISK LEGEND */
+.legend{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:2rem;padding:1rem;background:var(--white);border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,0.06);}
+.legend-item{display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;font-family:var(--mono);}
+.legend-dot{width:12px;height:12px;border-radius:50%;}
 
-  .nav-logo {
-    font-family: var(--display);
-    font-weight: 800;
-    font-size: 1.25rem;
-    color: var(--white);
-    letter-spacing: -0.02em;
-  }
+/* INCOTERM CARD */
+.incoterm-card{background:var(--white);border-radius:12px;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,0.07);overflow:hidden;border:1.5px solid transparent;transition:border-color 0.2s;}
+.incoterm-card:hover{border-color:var(--sea);}
 
-  .nav-logo span { color: var(--amber); }
+.card-header{padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;cursor:pointer;user-select:none;}
+.card-abbr{font-family:var(--display);font-weight:800;font-size:2rem;min-width:4rem;color:var(--navy);}
+.card-title-wrap{flex:1;}
+.card-title{font-family:var(--display);font-weight:700;font-size:1rem;color:var(--navy);}
+.card-subtitle{font-size:0.78rem;color:var(--fog);margin-top:0.2rem;}
+.card-badges{display:flex;gap:0.4rem;flex-wrap:wrap;margin-left:auto;}
+.badge{font-family:var(--mono);font-size:0.6rem;padding:0.25rem 0.55rem;border-radius:3px;letter-spacing:0.06em;font-weight:500;}
+.badge-mode{background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;}
+.badge-seller{background:#ECFDF5;color:#065F46;border:1px solid #6EE7B7;}
+.badge-buyer{background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;}
+.badge-any{background:#F5F3FF;color:#7C3AED;border:1px solid #DDD6FE;}
+.chevron{font-size:1rem;color:var(--fog);transition:transform 0.2s;margin-left:0.5rem;}
+.incoterm-card.open .chevron{transform:rotate(180deg);}
 
-  .nav-stats {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--fog);
-    letter-spacing: 0.05em;
-  }
+.card-body{display:none;padding:0 1.5rem 1.5rem;border-top:1px solid var(--mist);}
+.incoterm-card.open .card-body{display:block;}
 
-  /* ── HERO ── */
-  .hero {
-    background: var(--navy);
-    padding: 3.5rem 2rem 3rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
+/* VISUAL JOURNEY BAR */
+.journey{margin:1.25rem 0 1rem;}
+.journey-label{font-family:var(--mono);font-size:0.65rem;color:var(--fog);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.5rem;}
+.journey-track{position:relative;height:48px;background:var(--paper);border-radius:8px;display:flex;align-items:center;overflow:hidden;}
+.journey-seller{position:absolute;left:0;top:0;bottom:0;background:rgba(26,122,74,0.15);display:flex;align-items:center;justify-content:center;}
+.journey-buyer{position:absolute;right:0;top:0;bottom:0;background:rgba(200,75,49,0.1);display:flex;align-items:center;justify-content:center;}
+.journey-split{position:absolute;top:0;bottom:0;width:3px;background:var(--amber);z-index:2;}
+.journey-split::after{content:'▼ Risk transfers here';position:absolute;top:100%;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:0.55rem;color:var(--amber);white-space:nowrap;margin-top:2px;}
+.journey-end{position:absolute;font-family:var(--mono);font-size:0.6rem;font-weight:600;padding:0 0.5rem;}
+.journey-end.left{left:8px;color:var(--green);}
+.journey-end.right{right:8px;color:var(--red);}
+.journey-mid{position:absolute;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:0.55rem;color:var(--navy);z-index:3;text-align:center;white-space:nowrap;}
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 60px,
-      rgba(255,255,255,0.015) 60px,
-      rgba(255,255,255,0.015) 61px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 60px,
-      rgba(255,255,255,0.015) 60px,
-      rgba(255,255,255,0.015) 61px
-    );
-    pointer-events: none;
-  }
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;}
+.card-section h4{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--fog);margin-bottom:0.5rem;}
+.card-section ul{list-style:none;padding:0;}
+.card-section ul li{font-size:0.82rem;padding:0.25rem 0;border-bottom:1px solid var(--paper);display:flex;align-items:flex-start;gap:0.4rem;line-height:1.4;}
+.card-section ul li::before{content:'→';color:var(--sea);font-size:0.7rem;flex-shrink:0;margin-top:2px;}
+.card-def{font-size:0.85rem;color:#4A5568;line-height:1.6;margin-top:1rem;}
 
-  .hero-eyebrow {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--amber);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
+.tip-box{margin-top:1rem;padding:0.75rem 1rem;background:#FFFBEB;border-left:3px solid var(--amber);border-radius:0 6px 6px 0;font-size:0.8rem;color:#92400E;line-height:1.5;}
+.tip-box strong{display:block;font-family:var(--mono);font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.25rem;}
 
-  .hero h1 {
-    font-family: var(--display);
-    font-weight: 800;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    color: var(--white);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.75rem;
-  }
+/* COMPARISON TABLE */
+.compare-section{background:var(--white);border-radius:12px;padding:1.5rem;margin-bottom:2rem;box-shadow:0 2px 8px rgba(0,0,0,0.07);}
+.compare-section h2{font-family:var(--display);font-weight:700;font-size:1.2rem;margin-bottom:1rem;}
+.compare-table{width:100%;border-collapse:collapse;font-size:0.78rem;}
+.compare-table th{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--fog);padding:0.5rem 0.75rem;text-align:left;border-bottom:2px solid var(--mist);}
+.compare-table td{padding:0.6rem 0.75rem;border-bottom:1px solid var(--paper);}
+.compare-table tr:hover td{background:var(--paper);}
+.dot-green{color:var(--green);font-size:1rem;}
+.dot-red{color:var(--red);font-size:1rem;}
+.dot-amber{color:var(--amber);font-size:1rem;}
 
-  .hero h1 em {
-    font-style: normal;
-    color: var(--amber);
-  }
+footer{background:var(--navy);color:var(--fog);text-align:center;padding:2rem;font-size:0.78rem;font-family:var(--mono);}
+footer strong{color:var(--amber);}
 
-  .hero-sub {
-    color: var(--fog);
-    font-size: 1rem;
-    font-weight: 300;
-    max-width: 520px;
-    margin: 0 auto 2rem;
-    line-height: 1.6;
-  }
-
-  /* ── SEARCH ── */
-  .search-wrap {
-    max-width: 580px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .search-wrap input {
-    width: 100%;
-    padding: 1rem 1.25rem 1rem 3.25rem;
-    font-family: var(--body);
-    font-size: 1rem;
-    background: rgba(255,255,255,0.07);
-    border: 1.5px solid rgba(255,255,255,0.15);
-    border-radius: 8px;
-    color: var(--white);
-    outline: none;
-    transition: border-color 0.2s, background 0.2s;
-  }
-
-  .search-wrap input::placeholder { color: var(--fog); }
-  .search-wrap input:focus {
-    border-color: var(--amber);
-    background: rgba(255,255,255,0.1);
-  }
-
-  .search-icon {
-    position: absolute;
-    left: 1.1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--fog);
-    font-size: 1rem;
-    pointer-events: none;
-  }
-
-  .search-count {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--fog);
-    text-align: center;
-    margin-top: 0.6rem;
-  }
-
-  /* ── CATEGORIES ── */
-  .categories {
-    padding: 1.5rem 2rem;
-    background: var(--steel);
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .cat-btn {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.4rem 0.9rem;
-    border-radius: 4px;
-    border: 1.5px solid rgba(255,255,255,0.15);
-    background: transparent;
-    color: var(--mist);
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-
-  .cat-btn:hover, .cat-btn.active {
-    background: var(--amber);
-    border-color: var(--amber);
-    color: var(--navy);
-  }
-
-  /* ── MAIN LAYOUT ── */
-  .main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem 4rem;
-  }
-
-  /* ── ALPHABET NAV ── */
-  .alpha-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem;
-    margin-bottom: 2rem;
-    justify-content: center;
-  }
-
-  .alpha-btn {
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: 0.8rem;
-    width: 2rem;
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    border: none;
-    background: var(--white);
-    color: var(--steel);
-    cursor: pointer;
-    transition: all 0.15s;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  }
-
-  .alpha-btn:hover { background: var(--sea); color: white; }
-  .alpha-btn.has-terms { border-bottom: 2px solid var(--sea); }
-
-  /* ── SECTION HEADERS ── */
-  .letter-section { margin-bottom: 2.5rem; }
-
-  .letter-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .letter-label {
-    font-family: var(--display);
-    font-weight: 800;
-    font-size: 2.5rem;
-    color: var(--mist);
-    line-height: 1;
-    min-width: 3rem;
-  }
-
-  .letter-line {
-    flex: 1;
-    height: 1px;
-    background: var(--mist);
-  }
-
-  /* ── TERM CARDS ── */
-  .terms-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1rem;
-  }
-
-  .term-card {
-    background: var(--white);
-    border-radius: 8px;
-    padding: 1.25rem;
-    border: 1.5px solid transparent;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-    transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
-    cursor: default;
-  }
-
-  .term-card:hover {
-    border-color: var(--sea);
-    box-shadow: 0 4px 16px rgba(43,122,158,0.12);
-    transform: translateY(-1px);
-  }
-
-  .term-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 0.5rem;
-    margin-bottom: 0.6rem;
-  }
-
-  .term-name {
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: var(--navy);
-    line-height: 1.2;
-  }
-
-  .term-abbr {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    font-weight: 500;
-    color: var(--white);
-    background: var(--sea);
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .term-def {
-    font-size: 0.85rem;
-    color: #4A5568;
-    line-height: 1.55;
-  }
-
-  .term-cat {
-    display: inline-block;
-    margin-top: 0.75rem;
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
-    border: 1px solid;
-  }
-
-  .cat-color-documentation { color: #7C3AED; border-color: #DDD6FE; background: #F5F3FF; }
-  .cat-color-shipping { color: #065F46; border-color: #6EE7B7; background: #ECFDF5; }
-  .cat-color-classification { color: #B45309; border-color: #FCD34D; background: #FFFBEB; }
-  .cat-color-duties { color: #DC2626; border-color: #FCA5A5; background: #FEF2F2; }
-  .cat-color-parties { color: #1D4ED8; border-color: #93C5FD; background: #EFF6FF; }
-  .cat-color-finance { color: #047857; border-color: #6EE7B7; background: #ECFDF5; }
-  .cat-color-compliance { color: #9D174D; border-color: #F9A8D4; background: #FDF2F8; }
-  .cat-color-logistics { color: #1E40AF; border-color: #BFDBFE; background: #EFF6FF; }
-  .cat-color-valuation { color: #92400E; border-color: #FDE68A; background: #FFFBEB; }
-  .cat-color-trade-agreements { color: #064E3B; border-color: #A7F3D0; background: #ECFDF5; }
-
-  /* ── NO RESULTS ── */
-  .no-results {
-    text-align: center;
-    padding: 4rem 2rem;
-    color: var(--fog);
-    display: none;
-  }
-
-  .no-results-icon { font-size: 3rem; margin-bottom: 1rem; }
-  .no-results h3 { font-family: var(--display); font-size: 1.3rem; color: var(--steel); margin-bottom: 0.5rem; }
-  .no-results p { font-size: 0.9rem; }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--navy);
-    color: var(--fog);
-    text-align: center;
-    padding: 2rem;
-    font-size: 0.8rem;
-    font-family: var(--mono);
-    letter-spacing: 0.05em;
-  }
-
-  footer strong { color: var(--amber); }
-
-  /* ── HIGHLIGHT ── */
-  mark {
-    background: #FEF08A;
-    color: var(--navy);
-    border-radius: 2px;
-    padding: 0 1px;
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 600px) {
-    .terms-grid { grid-template-columns: 1fr; }
-    .hero { padding: 2.5rem 1.25rem 2rem; }
-    .categories { padding: 1rem; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; }
-  }
+@media(max-width:600px){
+  .card-grid{grid-template-columns:1fr;}
+  .card-badges{display:none;}
+  .compare-table{font-size:0.7rem;}
+}
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-logo">Clear<span>Path</span></div>
-  <div class="nav-stats" id="navStats">Loading…</div>
+  <div class="nav-logo">Inco<span>Terms</span></div>
+  <div class="nav-sub">2020 VISUAL GUIDE · 11 TERMS</div>
 </nav>
 
 <header class="hero">
-  <p class="hero-eyebrow">Customs Coordinator Reference</p>
-  <h1>Every term.<br><em>Clearly explained.</em></h1>
-  <p class="hero-sub">The complete glossary for customs coordinators — from entry documents to duty calculations, classification codes to trade agreements.</p>
-  <div class="search-wrap">
-    <span class="search-icon">🔍</span>
-    <input type="text" id="searchInput" placeholder="Search terms, abbreviations, or definitions…" autocomplete="off" />
-  </div>
-  <div class="search-count" id="searchCount"></div>
+  <p class="eyebrow">International Commercial Terms</p>
+  <h1>Who pays.<br>Who risks.<br><em>Exactly where.</em></h1>
+  <p>The complete visual breakdown of all 11 Incoterms 2020 — risk transfer points, seller vs buyer obligations, and when to use each one.</p>
 </header>
 
-<div class="categories" id="categoryBar">
-  <button class="cat-btn active" data-cat="all">All Categories</button>
+<div class="mode-bar">
+  <button class="mode-btn active" onclick="filterMode('all')">All Incoterms</button>
+  <button class="mode-btn" onclick="filterMode('any')">Any Mode</button>
+  <button class="mode-btn" onclick="filterMode('sea')">Sea & Inland Only</button>
+  <button class="mode-btn" onclick="filterMode('seller')">Seller Friendly</button>
+  <button class="mode-btn" onclick="filterMode('buyer')">Buyer Friendly</button>
 </div>
 
 <main class="main">
-  <nav class="alpha-nav" id="alphaNav" aria-label="Alphabetical navigation"></nav>
-  <div id="glossaryContent"></div>
-  <div class="no-results" id="noResults">
-    <div class="no-results-icon">📦</div>
-    <h3>No terms found</h3>
-    <p>Try a different keyword or browse by category.</p>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(26,122,74,0.4)"></div> Seller's responsibility</div>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(200,75,49,0.3)"></div> Buyer's responsibility</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div> Risk transfer point</div>
+</div>
+
+<div class="compare-section">
+  <h2>Quick Comparison — All 11 Incoterms</h2>
+  <div style="overflow-x:auto;">
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Term</th><th>Mode</th><th>Export Customs</th><th>Main Freight</th><th>Insurance</th><th>Import Customs</th><th>Import Duties</th><th>Best For</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>EXW</strong></td><td>Any</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Domestic pickup</td></tr>
+      <tr><td><strong>FCA</strong></td><td>Any</td><td class="dot-green">● Seller</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Air / multimodal</td></tr>
+      <tr><td><strong>CPT</strong></td><td>Any</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Air / courier</td></tr>
+      <tr><td><strong>CIP</strong></td><td>Any</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Air with insurance</td></tr>
+      <tr><td><strong>DAP</strong></td><td>Any</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Door delivery</td></tr>
+      <tr><td><strong>DPU</strong></td><td>Any</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Terminal delivery</td></tr>
+      <tr><td><strong>DDP</strong></td><td>Any</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td>Full seller control</td></tr>
+      <tr><td><strong>FAS</strong></td><td>Sea only</td><td class="dot-green">● Seller</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Bulk cargo</td></tr>
+      <tr><td><strong>FOB</strong></td><td>Sea only</td><td class="dot-green">● Seller</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Ocean freight</td></tr>
+      <tr><td><strong>CFR</strong></td><td>Sea only</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Ocean no insurance</td></tr>
+      <tr><td><strong>CIF</strong></td><td>Sea only</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-green">● Seller</td><td class="dot-red">● Buyer</td><td class="dot-red">● Buyer</td><td>Ocean with insurance</td></tr>
+    </tbody>
+  </table>
   </div>
+</div>
+
+<div id="incotermsList"></div>
+
 </main>
 
-<footer>
-  <strong>ClearPath</strong> &nbsp;·&nbsp; Customs Trade Glossary &nbsp;·&nbsp; For educational reference only
-</footer>
+<footer><strong>Incoterms 2020</strong> &nbsp;·&nbsp; Published by ICC &nbsp;·&nbsp; Visual reference only — consult ICC official publications for legal use</footer>
 
 <script>
-const TERMS = [
-  // DOCUMENTATION
-  { term: "Bill of Lading", abbr: "B/L", cat: "documentation", def: "A legal document issued by a carrier or agent acknowledging receipt of goods for shipment. It serves as a contract of carriage, a receipt for goods, and a document of title that can be transferred to take possession of cargo." },
-  { term: "Commercial Invoice", abbr: "CI", cat: "documentation", def: "A document issued by the seller to the buyer listing goods sold, quantities, unit prices, total value, and payment terms. Required by customs authorities to assess duties and verify the value of imported goods." },
-  { term: "Packing List", abbr: "PL", cat: "documentation", def: "A detailed document that itemizes the contents of each package in a shipment — weights, dimensions, descriptions, and quantities. Used by customs and warehouse staff to verify cargo." },
-  { term: "Certificate of Origin", abbr: "CO", cat: "documentation", def: "An official document certifying the country in which goods were manufactured or produced. Determines eligibility for preferential duty rates under free trade agreements." },
-  { term: "Airway Bill", abbr: "AWB", cat: "documentation", def: "The air equivalent of an ocean bill of lading. A non-negotiable transport document issued by an airline or freight forwarder for air cargo shipments." },
-  { term: "Entry Summary", abbr: "CBP Form 7501", cat: "documentation", def: "The U.S. Customs form used to declare imported merchandise, classify goods under the Harmonized Tariff Schedule, and calculate duties and taxes owed to CBP." },
-  { term: "Shipper's Export Declaration", abbr: "SED", cat: "documentation", def: "A U.S. government export document (now replaced by Electronic Export Information) filed with CBP to report export data for goods valued over $2,500 or requiring an export license." },
-  { term: "Importer Security Filing", abbr: "ISF", cat: "documentation", def: "Also known as '10+2', a U.S. CBP requirement that importers submit specific data 24 hours before goods are loaded onto a vessel bound for the United States." },
-  { term: "Phytosanitary Certificate", abbr: null, cat: "documentation", def: "An official document issued by the agriculture department of the exporting country certifying that plants or plant products meet the phytosanitary import requirements of the destination country." },
-  { term: "NAFTA/USMCA Certificate of Origin", abbr: null, cat: "documentation", def: "A form certifying that goods qualify for preferential tariff treatment under the United States-Mexico-Canada Agreement, enabling reduced or zero duty rates." },
-  { term: "Dangerous Goods Declaration", abbr: "DGD", cat: "documentation", def: "A document required when shipping hazardous materials, certifying that goods are properly classified, packaged, marked, and labeled in compliance with IATA or IMDG regulations." },
-  { term: "Letter of Credit", abbr: "L/C", cat: "documentation", def: "A bank-issued financial document guaranteeing that a seller will receive payment from the buyer provided specific conditions and documentation are met." },
-
-  // SHIPPING & INCOTERMS
-  { term: "Ex Works", abbr: "EXW", cat: "shipping", def: "An Incoterm where the seller makes goods available at their premises. The buyer is responsible for all transport costs, export customs clearance, and risk from that point onward." },
-  { term: "Free On Board", abbr: "FOB", cat: "shipping", def: "An Incoterm specifying that the seller is responsible for goods until they are loaded onto the vessel at the named port of shipment. Risk and costs transfer to the buyer at that point." },
-  { term: "Cost, Insurance and Freight", abbr: "CIF", cat: "shipping", def: "An Incoterm where the seller pays for transportation and insurance to the destination port. Risk transfers to the buyer once goods are on board the vessel at the origin port." },
-  { term: "Delivered Duty Paid", abbr: "DDP", cat: "shipping", def: "An Incoterm placing maximum obligation on the seller, who is responsible for delivering goods to the named destination, cleared for import, with all duties and taxes paid." },
-  { term: "Delivered At Place", abbr: "DAP", cat: "shipping", def: "An Incoterm where the seller delivers goods to a named destination, ready for unloading, but the buyer is responsible for import duties and clearance costs." },
-  { term: "Free Carrier", abbr: "FCA", cat: "shipping", def: "An Incoterm where the seller delivers goods to the carrier or another named party at a specified location. Risk transfers at that point, and the buyer arranges main carriage." },
-  { term: "Carriage and Insurance Paid To", abbr: "CIP", cat: "shipping", def: "An Incoterm where the seller delivers goods to a carrier, pays for transport to the destination, and provides minimum cargo insurance. Risk transfers when goods are handed to the first carrier." },
-  { term: "Freight Prepaid", abbr: null, cat: "shipping", def: "A shipping term indicating that the shipper (seller) has already paid the freight charges before the shipment departs. The consignee will not be billed for freight upon delivery." },
-  { term: "Collect Freight", abbr: null, cat: "shipping", def: "A shipping arrangement where freight charges are collected from the consignee (buyer) at the destination rather than being paid by the shipper at origin." },
-  { term: "Twenty-Foot Equivalent Unit", abbr: "TEU", cat: "shipping", def: "The standard unit of measurement for shipping container capacity, equivalent to one 20-foot intermodal container. A 40-foot container equals 2 TEUs." },
-  { term: "Less Than Container Load", abbr: "LCL", cat: "shipping", def: "A shipment that does not fill an entire shipping container and is consolidated with cargo from other shippers. Also called 'groupage'. Generally more expensive per unit than FCL." },
-  { term: "Full Container Load", abbr: "FCL", cat: "shipping", def: "A shipment that fills or exclusively uses an entire shipping container, regardless of whether goods actually fill the container completely. Provides better rates and less handling than LCL." },
-  { term: "Non-Vessel Operating Common Carrier", abbr: "NVOCC", cat: "shipping", def: "A freight company that issues its own bills of lading and takes responsibility for cargo but does not operate the vessel carrying the goods. Acts as a carrier to shippers and a shipper to vessel operators." },
-
-  // CLASSIFICATION
-  { term: "Harmonized Tariff Schedule", abbr: "HTS", cat: "classification", def: "The U.S. tariff classification system based on the international Harmonized System. An 10-digit code number assigned to every imported product determines the applicable duty rate, regulations, and import requirements." },
-  { term: "Harmonized System", abbr: "HS Code", cat: "classification", def: "An international nomenclature developed by the World Customs Organization (WCO) for classifying traded products. The first 6 digits are standardized internationally; countries add additional digits for further specificity." },
-  { term: "Schedule B", abbr: null, cat: "classification", def: "The U.S. Census Bureau's statistical classification system used for export goods. Similar to the HTS but used specifically for reporting exports, with codes that align with the first 6 digits of the HS." },
-  { term: "General Rules of Interpretation", abbr: "GRI", cat: "classification", def: "Six rules that govern the classification of goods under the HTS. Applied sequentially, they determine the correct tariff heading when a product could potentially fall under multiple categories." },
-  { term: "Tariff Engineering", abbr: null, cat: "classification", def: "The legal practice of modifying a product's characteristics or the point of manufacture to qualify for a lower tariff classification. Differs from misclassification, which is illegal." },
-  { term: "Chapter 98", abbr: null, cat: "classification", def: "Special provisions in the U.S. HTS that allow duty-free or reduced-duty treatment for specific types of goods, such as goods exported and returned for repair, or American goods returned after being processed abroad." },
-  { term: "Binding Ruling", abbr: null, cat: "classification", def: "A written decision issued by CBP that provides a legal determination of how a specific product will be classified, valued, or treated for import purposes. Binding on both CBP and the importer for three years." },
-  { term: "Commodity Classification", abbr: null, cat: "classification", def: "The process of assigning the correct HS or HTS code to a product based on its composition, use, and characteristics. Determines applicable duty rates, trade restrictions, and import requirements." },
-
-  // DUTIES & TAXES
-  { term: "Ad Valorem Duty", abbr: null, cat: "duties", def: "A customs duty calculated as a percentage of the value of the imported goods. The most common form of duty — for example, '5% ad valorem' means 5% of the customs value is owed." },
-  { term: "Specific Duty", abbr: null, cat: "duties", def: "A customs duty assessed on a specific unit of measurement — per item, per kilogram, or per liter — rather than a percentage of value. Often applied to agricultural products and petroleum." },
-  { term: "Compound Duty", abbr: null, cat: "duties", def: "A customs duty that combines both an ad valorem component and a specific duty component. For example, '5% plus $0.10 per kg' means both the percentage and the flat rate apply." },
-  { term: "Anti-Dumping Duty", abbr: "ADD", cat: "duties", def: "An additional duty imposed on imported goods that are sold at below-market prices (dumped) in the importing country. Designed to protect domestic industries from unfair foreign competition." },
-  { term: "Countervailing Duty", abbr: "CVD", cat: "duties", def: "An additional import duty imposed to offset subsidies provided by foreign governments to their exporters. Counters unfair competitive advantages created by foreign government financial support." },
-  { term: "Section 301 Tariff", abbr: null, cat: "duties", def: "Additional tariffs imposed by the U.S. on goods from countries engaged in unfair trade practices. Notably applied to Chinese goods starting in 2018, with rates up to 25% on hundreds of product categories." },
-  { term: "Merchandise Processing Fee", abbr: "MPF", cat: "duties", def: "A U.S. customs user fee charged on most commercial imports, calculated at 0.3464% of the value of the goods (minimum $31.67, maximum $614.35 per entry as of recent schedules)." },
-  { term: "Harbor Maintenance Fee", abbr: "HMF", cat: "duties", def: "A U.S. fee charged on commercial cargo loaded or unloaded at U.S. ports, calculated at 0.125% of the cargo value. Funds harbor maintenance and improvements." },
-  { term: "Duty Drawback", abbr: null, cat: "duties", def: "A refund of 99% of customs duties paid on imported goods that are subsequently exported or destroyed. Available in manufacturing, rejected merchandise, and unused merchandise drawback scenarios." },
-  { term: "De Minimis", abbr: null, cat: "duties", def: "The threshold value below which imported goods are exempt from duties and taxes. The U.S. de minimis threshold is $800 per shipment per day, allowing duty-free and tax-free entry." },
-  { term: "Section 232 Tariff", abbr: null, cat: "duties", def: "Tariffs imposed on steel and aluminum imports under Section 232 of the Trade Expansion Act, citing national security concerns. Currently 25% on steel and 10% on aluminum from most countries." },
-  { term: "First Sale Valuation", abbr: null, cat: "duties", def: "A valuation method allowing importers to use the price paid in the first sale (manufacturer to middleman) rather than the last sale price, potentially resulting in lower assessed duties." },
-
-  // PARTIES
-  { term: "Importer of Record", abbr: "IOR", cat: "parties", def: "The individual or company legally responsible for ensuring that imported goods comply with all customs regulations, that accurate entry documentation is filed, and that all duties and fees are paid." },
-  { term: "Customs Broker", abbr: "CB", cat: "parties", def: "A licensed professional who acts as an agent for importers in the customs clearance process. Customs brokers must be licensed by CBP and are expert in import regulations, classification, and documentation." },
-  { term: "Freight Forwarder", abbr: "FF", cat: "parties", def: "An agent who arranges transportation of goods on behalf of shippers. Freight forwarders coordinate carriers, prepare documentation, handle customs formalities on the export side, and manage logistics." },
-  { term: "Consignee", abbr: null, cat: "parties", def: "The person or company designated as the receiver or owner of goods in a shipment. Listed on the bill of lading and customs documents as the party to whom the cargo is addressed and delivered." },
-  { term: "Consignor", abbr: null, cat: "parties", def: "The individual or company that ships goods — the sender or shipper. The consignor delivers goods to a carrier for transport and is named in the shipping documents as the sender." },
-  { term: "Notify Party", abbr: null, cat: "parties", def: "A party listed on a bill of lading who is to be contacted when goods arrive at the destination port. Often the customs broker, freight forwarder, or the buyer's agent." },
-  { term: "Bonded Carrier", abbr: null, cat: "parties", def: "A carrier (trucker, airline, or ship operator) authorized by CBP to transport in-bond merchandise between bonded locations without paying duties. Must post a surety bond with CBP." },
-  { term: "Non-Resident Importer", abbr: "NRI", cat: "parties", def: "A foreign company or individual importing goods into Canada without a Canadian business presence. NRIs must register with the Canada Border Services Agency to act as the importer of record." },
-
-  // FINANCE & BONDS
-  { term: "Surety Bond", abbr: null, cat: "finance", def: "A financial guarantee bond required by CBP from importers, ensuring that duties, taxes, and fees will be paid. A continuous bond (annual) or single-entry bond must be in place before goods can be released." },
-  { term: "Continuous Bond", abbr: null, cat: "finance", def: "An annual customs bond that covers all import transactions for a year, typically set at 10% of duties paid in the prior year (minimum $50,000). More cost-effective than single-entry bonds for frequent importers." },
-  { term: "Single Entry Bond", abbr: "SEB", cat: "finance", def: "A customs bond covering a single importation. The bond amount equals the total value of the goods plus duties. Used for occasional importers or very high-value shipments." },
-  { term: "Landed Cost", abbr: null, cat: "finance", def: "The total cost of a product once it has arrived at the buyer's door. Includes purchase price, freight, insurance, duties, taxes, customs brokerage fees, and any other applicable costs." },
-  { term: "Customs Value", abbr: null, cat: "valuation", def: "The value of imported goods as determined by customs for the purpose of calculating duties. In the U.S., based on the transaction value (price paid) per WTO Customs Valuation Agreement." },
-  { term: "Transaction Value", abbr: null, cat: "valuation", def: "The primary method of customs valuation — the price actually paid or payable for goods when sold for export to the importing country, adjusted for specific additions (e.g., royalties, assists) and deductions." },
-  { term: "Deductive Value", abbr: null, cat: "valuation", def: "A customs valuation method used when transaction value cannot be determined. Based on the price at which identical or similar goods are sold in the importing country, minus post-import costs." },
-  { term: "Computed Value", abbr: null, cat: "valuation", def: "A customs valuation method based on the cost of production — materials, fabrication, profit, and general expenses. Used when other valuation methods cannot be applied." },
-
-  // COMPLIANCE & ENFORCEMENT
-  { term: "Customs-Trade Partnership Against Terrorism", abbr: "C-TPAT", cat: "compliance", def: "A voluntary U.S. CBP program in which importers, carriers, and customs brokers agree to enhance security practices in exchange for expedited customs clearance and reduced examination rates." },
-  { term: "Automated Manifest System", abbr: "AMS", cat: "compliance", def: "A CBP electronic data interchange system where carriers submit advance cargo manifest data before arrival. Required for all ocean and air carriers to identify high-risk shipments before they arrive." },
-  { term: "Automated Export System", abbr: "AES", cat: "compliance", def: "The U.S. government's internet-based system for collecting Electronic Export Information (EEI). Used by exporters and freight forwarders to report export data to the Census Bureau and CBP." },
-  { term: "Harmonized Tariff Schedule of the US", abbr: "HTSUS", cat: "classification", def: "The official U.S. tariff schedule used to classify all imported goods. Published by the U.S. International Trade Commission, it lists duty rates, statistical notes, and import requirements for every product category." },
-  { term: "Anti-Money Laundering", abbr: "AML", cat: "compliance", def: "Regulations requiring customs brokers and financial institutions involved in trade to detect and report suspicious financial activity that may indicate money laundering or trade-based financial crimes." },
-  { term: "Export Administration Regulations", abbr: "EAR", cat: "compliance", def: "U.S. Department of Commerce regulations governing the export and re-export of commercial items with potential military or dual-use applications. Controlled items require an export license." },
-  { term: "International Traffic in Arms Regulations", abbr: "ITAR", cat: "compliance", def: "U.S. State Department regulations controlling the export of defense-related articles, services, and technical data listed on the U.S. Munitions List. Violations carry severe criminal penalties." },
-  { term: "Foreign Corrupt Practices Act", abbr: "FCPA", cat: "compliance", def: "U.S. law prohibiting companies and individuals from bribing foreign government officials to obtain or retain business. Relevant to customs operations where facilitation payments may be requested." },
-  { term: "Denied Parties Screening", abbr: "DPS", cat: "compliance", def: "The process of checking customers, suppliers, and other trade partners against government lists of sanctioned individuals and entities to ensure trade compliance with U.S. and international regulations." },
-  { term: "Routed Export Transaction", abbr: "RET", cat: "compliance", def: "An export transaction in which the foreign buyer or their U.S. agent selects the carrier and arranges export, taking on responsibility for filing Electronic Export Information with the Census Bureau." },
-
-  // LOGISTICS
-  { term: "Port of Entry", abbr: "POE", cat: "logistics", def: "A designated location — airport, seaport, or land border crossing — where goods and travelers may legally enter a country and undergo customs inspection and processing." },
-  { term: "Point of Stuffing", abbr: "POS", cat: "logistics", def: "The location where cargo is loaded into a shipping container. Required information for ISF filing, helping CBP track where in the supply chain cargo was consolidated." },
-  { term: "Customs Examination", abbr: null, cat: "logistics", def: "Physical or document-based inspection of imported goods by CBP officers. Can range from a document review to a full unloading of a container. Costs for exams are typically borne by the importer." },
-  { term: "Bonded Warehouse", abbr: null, cat: "logistics", def: "A secure facility licensed by CBP where dutiable goods may be stored, manipulated, or manufactured for up to five years without payment of duties. Duties are paid when goods are withdrawn for consumption." },
-  { term: "Foreign Trade Zone", abbr: "FTZ", cat: "logistics", def: "A designated area within the U.S. treated as outside customs territory for duty purposes. Companies can defer, reduce, or eliminate duties on goods imported for manufacturing or re-export." },
-  { term: "In-Bond Movement", abbr: null, cat: "logistics", def: "Movement of goods under customs seal between ports without payment of duties. Common types include Immediate Transportation (IT) and Transportation and Exportation (T&E) entries." },
-  { term: "Drayage", abbr: null, cat: "logistics", def: "Short-distance trucking of shipping containers from a port or rail terminal to a nearby warehouse, distribution center, or other location. A critical link in intermodal transportation chains." },
-  { term: "Transshipment", abbr: null, cat: "logistics", def: "The transfer of goods from one vessel or transport mode to another during transit to the final destination. Can affect country of origin determinations and compliance with certain trade restrictions." },
-  { term: "Country of Origin", abbr: "COO", cat: "logistics", def: "The country where goods were manufactured, produced, or substantially transformed. Determines applicable tariff rates, trade restrictions, marking requirements, and eligibility for trade preferences." },
-  { term: "Substantial Transformation", abbr: null, cat: "logistics", def: "A standard used to determine country of origin: goods undergo substantial transformation when they emerge from a manufacturing process with a new name, character, or use distinct from their input materials." },
-  { term: "Manifest", abbr: null, cat: "logistics", def: "A comprehensive list of cargo onboard a vessel, aircraft, or truck. The cargo manifest includes descriptions of goods, quantities, shippers, consignees, and destination information, and must be submitted to customs." },
-  { term: "Last Free Day", abbr: "LFD", cat: "logistics", def: "The last day that cargo may remain at a container terminal before storage (demurrage) charges begin. Knowing and meeting the LFD is critical to controlling supply chain costs." },
-  { term: "Demurrage", abbr: null, cat: "logistics", def: "Charges assessed by a carrier or terminal when a container is not returned or picked up within the allowed free time after discharge from a vessel. Can accumulate rapidly and significantly impact costs." },
-  { term: "Detention", abbr: null, cat: "logistics", def: "Charges assessed when a container is kept by the consignee (at their facility) longer than the agreed free time. Distinct from demurrage, which accrues at the terminal." },
-
-  // TRADE AGREEMENTS
-  { term: "United States-Mexico-Canada Agreement", abbr: "USMCA", cat: "trade-agreements", def: "The free trade agreement replacing NAFTA, governing trade between the U.S., Mexico, and Canada since 2020. Provides preferential duty treatment for qualifying goods that meet regional value content and tariff shift requirements." },
-  { term: "Most Favored Nation", abbr: "MFN", cat: "trade-agreements", def: "The standard duty rate applied to imports from WTO member countries. MFN rates are the baseline tariff — preferential rates from FTAs are lower, while punitive rates for sanctioned countries are higher." },
-  { term: "Generalized System of Preferences", abbr: "GSP", cat: "trade-agreements", def: "A U.S. trade program providing duty-free treatment for thousands of products imported from eligible developing countries. Intended to promote economic growth in beneficiary nations." },
-  { term: "Rules of Origin", abbr: "ROO", cat: "trade-agreements", def: "Criteria used to determine the national source of a product for purposes of applying tariffs, trade restrictions, or preferential duty rates. Includes wholly obtained goods and substantial transformation standards." },
-  { term: "Regional Value Content", abbr: "RVC", cat: "trade-agreements", def: "A rules of origin criterion requiring that a certain percentage of a product's value be added within the free trade area. For example, USMCA requires 75% RVC for passenger vehicles." },
-  { term: "Tariff Rate Quota", abbr: "TRQ", cat: "trade-agreements", def: "A two-tiered import control that allows a specified quantity of goods to enter at a low (in-quota) duty rate, with imports above that quantity subject to a significantly higher (over-quota) rate." },
-  { term: "African Growth and Opportunity Act", abbr: "AGOA", cat: "trade-agreements", def: "A U.S. trade act providing eligible sub-Saharan African countries with duty-free access to the U.S. market for thousands of goods, aimed at fostering economic growth and development." },
-
-  // ADDITIONAL TERMS
-  { term: "Electronic Export Information", abbr: "EEI", cat: "compliance", def: "Data filed through the Automated Export System (AES) for exports valued over $2,500 or requiring a license. Replaced the Shipper's Export Declaration in 2014. Required by the Foreign Trade Regulations." },
-  { term: "Automated Broker Interface", abbr: "ABI", cat: "compliance", def: "CBP's electronic system allowing licensed customs brokers and importers to electronically file entry documents, communicate with CBP, and receive electronic release notifications." },
-  { term: "Power of Attorney", abbr: "POA", cat: "documentation", def: "A legal document authorizing a customs broker or freight forwarder to act on behalf of an importer or exporter in customs transactions. Must be executed before an agent can file entries or export declarations." },
-  { term: "Protest", abbr: "CBP Form 19", cat: "compliance", def: "A formal legal challenge filed by an importer disputing a CBP decision on classification, valuation, or other customs determination. Must be filed within 180 days of liquidation of the entry." },
-  { term: "Liquidation", abbr: null, cat: "compliance", def: "CBP's final assessment of duties owed on an import entry. Occurs when CBP either accepts the importer's declared values and classifications or makes corrections. Typically within one year of entry." },
-  { term: "Prior Disclosure", abbr: "PD", cat: "compliance", def: "A voluntary self-disclosure of a customs violation made to CBP before an investigation has begun. Reduces penalties to unpaid duties plus interest, avoiding the much higher penalties for discovered violations." },
-  { term: "Recordkeeping", abbr: "19 CFR Part 163", cat: "compliance", def: "The CBP requirement that importers, brokers, and related parties retain all records related to importations for five years from the date of entry. Critical for audits and post-entry corrections." },
-  { term: "Post-Entry Amendment", abbr: "PEA", cat: "compliance", def: "A correction to an import entry filed after the original entry but before CBP has liquidated it. Used to correct classification errors, value discrepancies, or other mistakes before they become finalized." },
-  { term: "Fines, Penalties & Forfeitures", abbr: "FP&F", cat: "compliance", def: "CBP's enforcement mechanism for customs violations. Penalties range from the value of the merchandise to four times the unpaid duties, depending on whether the violation was negligent, grossly negligent, or fraudulent." },
-  { term: "Trade Representative", abbr: "USTR", cat: "parties", def: "The United States Trade Representative — a Cabinet-level official and agency responsible for developing and coordinating U.S. trade policy and negotiating international trade agreements." },
-  { term: "World Trade Organization", abbr: "WTO", cat: "trade-agreements", def: "An international body that establishes global rules for international trade, provides a forum for negotiations, and settles trade disputes between member nations. 164 member countries as of 2024." },
-  { term: "Customs Bond", abbr: null, cat: "finance", def: "A financial instrument guaranteeing that importers and other principals will fulfill their obligations to CBP, including payment of duties, taxes, and compliance with customs laws and regulations." },
-  { term: "Intermodal Transportation", abbr: null, cat: "logistics", def: "The use of multiple modes of transport (ship, rail, truck) in a single journey, using standardized containers that can be transferred between modes without unloading the cargo." },
-  { term: "Country of Origin Marking", abbr: null, cat: "compliance", def: "The CBP requirement that imported articles be marked to indicate to the ultimate purchaser the country in which the article was made. Must be conspicuous, legible, indelible, and in English." },
-  { term: "Preferential Duty Rate", abbr: null, cat: "trade-agreements", def: "A reduced or zero import duty rate available to goods that qualify under a free trade agreement or preferential trade program, as opposed to the standard MFN duty rate." },
-  { term: "FDA Prior Notice", abbr: "PN", cat: "compliance", def: "A requirement from the U.S. Food and Drug Administration that importers submit advance notice before food is imported or offered for import into the United States. Must be filed 2–8 hours before arrival." },
-  { term: "LACEY Act Declaration", abbr: null, cat: "compliance", def: "A U.S. requirement for importers of plants and plant products (including wood, paper, and certain furniture) to declare the scientific name, country of harvest, and quantity of plant material in the shipment." },
-  { term: "Trade Facilitation and Trade Enforcement Act", abbr: "TFTEA", cat: "compliance", def: "2016 U.S. legislation that strengthened CBP's ability to enforce trade laws, expanded the duty drawback program, reformed de minimis rules, and enhanced trade facilitation programs." },
-  { term: "Single Window", abbr: null, cat: "compliance", def: "An integrated platform allowing traders to submit standardized import and export information once to fulfill all regulatory reporting requirements across multiple government agencies." },
+const INCOTERMS = [
+  {
+    abbr:"EXW", name:"Ex Works", mode:"any", party:"buyer",
+    split:5,
+    sellerZone:"Seller's factory only",
+    buyerZone:"Everything from factory gate onward",
+    sellerDoes:["Makes goods available at named premises","Packages goods (unless agreed otherwise)","Provides commercial invoice and packing list"],
+    buyerDoes:["Arranges all transport from seller's door","Handles export customs clearance","Pays all freight, insurance, duties","Assumes all risk from pickup point"],
+    def:"The seller's minimum obligation. Goods are made available at the seller's premises. The buyer bears all costs and risks from that point. Rarely used for international trade as the buyer must handle export formalities in a foreign country.",
+    tip:"⚠️ Avoid EXW for international shipments — the buyer must clear export customs in the seller's country, which is often impractical. Use FCA instead.",
+    badges:["Any Mode","Buyer Pays All"]
+  },
+  {
+    abbr:"FCA", name:"Free Carrier", mode:"any", party:"buyer",
+    split:20,
+    sellerZone:"Export clearance + delivery to carrier",
+    buyerZone:"Main carriage + import",
+    sellerDoes:["Clears goods for export","Delivers goods to named carrier or location","Provides export documentation"],
+    buyerDoes:["Arranges and pays main international freight","Obtains cargo insurance (optional)","Handles import customs and duties"],
+    def:"The seller delivers goods to a named carrier at a named place. If the place is the seller's premises, the seller loads; otherwise the seller is not responsible for unloading. Risk transfers when goods are handed to the carrier.",
+    tip:"✅ Best replacement for EXW in international trade. Also ideal for air freight and multimodal shipments. FCA + seller's premises is the most common air freight term.",
+    badges:["Any Mode","Popular for Air"]
+  },
+  {
+    abbr:"CPT", name:"Carriage Paid To", mode:"any", party:"balanced",
+    split:35,
+    sellerZone:"Export + main freight paid",
+    buyerZone:"Risk during transit + import",
+    sellerDoes:["Clears goods for export","Contracts and pays for main carriage to named destination","Provides transport documents"],
+    buyerDoes:["Bears risk from when goods handed to first carrier","Arranges cargo insurance if desired","Handles import customs and duties"],
+    def:"The seller pays for carriage to the named destination, but risk transfers to the buyer when goods are handed to the first carrier. Note: the seller pays freight but the buyer bears the risk during transit.",
+    tip:"⚠️ Watch the risk/cost split: seller pays freight but buyer bears risk during the voyage. This is a common source of confusion.",
+    badges:["Any Mode","Seller Pays Freight"]
+  },
+  {
+    abbr:"CIP", name:"Carriage and Insurance Paid To", mode:"any", party:"balanced",
+    split:35,
+    sellerZone:"Export + freight + insurance",
+    buyerZone:"Risk during transit + import",
+    sellerDoes:["Clears goods for export","Pays for main carriage to named destination","Provides minimum 110% cargo insurance (Institute Cargo Clauses A — all risks)","Provides transport and insurance documents"],
+    buyerDoes:["Bears risk from when goods handed to first carrier","Handles import customs and duties"],
+    def:"Like CPT but the seller must also provide cargo insurance. CIP requires Institute Cargo Clauses A (all-risks) coverage — a higher standard than CIF. Suitable for containerized and air shipments.",
+    tip:"✅ CIP is better than CIF for containerized cargo. The insurance requirement is more comprehensive (ICC A vs ICC C for CIF).",
+    badges:["Any Mode","Seller Insures"]
+  },
+  {
+    abbr:"DAP", name:"Delivered at Place", mode:"any", party:"seller",
+    split:75,
+    sellerZone:"Export + freight + delivery to named place",
+    buyerZone:"Unloading + import duties",
+    sellerDoes:["Handles export clearance","Arranges and pays all transport to named destination","Bears all risk until goods are ready for unloading","Does NOT unload the goods"],
+    buyerDoes:["Unloads goods at destination","Handles import customs clearance","Pays import duties and taxes"],
+    def:"The seller delivers goods to a named place ready for unloading. The seller bears all risk and cost until delivery, except for import duties. The buyer handles import clearance and unloading.",
+    tip:"✅ Very popular for e-commerce and courier shipments. The seller controls the entire journey — good when the seller has established logistics networks.",
+    badges:["Any Mode","Door Delivery"]
+  },
+  {
+    abbr:"DPU", name:"Delivered at Place Unloaded", mode:"any", party:"seller",
+    split:80,
+    sellerZone:"Export + freight + unloading at terminal",
+    buyerZone:"Import duties + onward transport",
+    sellerDoes:["Handles export clearance","Arranges and pays all transport","Unloads goods at the named terminal or place","Bears risk until goods are unloaded"],
+    buyerDoes:["Handles import customs clearance","Pays import duties and taxes","Arranges onward transport if needed"],
+    def:"The only Incoterm where the seller is responsible for unloading at destination. The seller bears all risk until goods are unloaded at the named terminal. New in Incoterms 2020, replacing DAT.",
+    tip:"ℹ️ New in 2020. Formerly called DAT (Delivered at Terminal). Confirm the terminal can receive the seller's transport before using DPU.",
+    badges:["Any Mode","Seller Unloads"]
+  },
+  {
+    abbr:"DDP", name:"Delivered Duty Paid", mode:"any", party:"seller",
+    split:92,
+    sellerZone:"Everything — export, freight, insurance, import duties",
+    buyerZone:"Unloading only",
+    sellerDoes:["Handles all export customs","Pays all freight and insurance","Clears import customs in destination country","Pays all import duties and taxes","Delivers to named destination"],
+    buyerDoes:["Unloads goods (unless agreed otherwise)","Nothing else — maximum convenience"],
+    def:"Maximum obligation on the seller. The seller handles everything including import customs and duty payment in the buyer's country. The buyer simply receives the goods. Risk stays with the seller until delivery.",
+    tip:"⚠️ Sellers must be able to act as importer of record in the destination country. Many sellers avoid DDP because they can't register as importers abroad. Use DAP + let the buyer handle duties instead.",
+    badges:["Any Mode","Seller Does All"]
+  },
+  {
+    abbr:"FAS", name:"Free Alongside Ship", mode:"sea", party:"buyer",
+    split:18,
+    sellerZone:"Export clearance + delivery alongside vessel",
+    buyerZone:"Loading + main freight + import",
+    sellerDoes:["Clears goods for export","Delivers goods alongside the named vessel at port of shipment","Risk ends when goods are placed alongside ship"],
+    buyerDoes:["Loads goods onto the vessel","Arranges and pays ocean freight","Obtains insurance","Handles import customs and duties"],
+    def:"The seller delivers goods alongside the vessel at the named port of shipment. Used for bulk cargo (grain, coal, ore) where goods are delivered by conveyor or barge alongside the ship, not in containers.",
+    tip:"ℹ️ FAS is used almost exclusively for bulk commodities. Not suitable for containerized cargo — use FCA instead.",
+    badges:["Sea Only","Bulk Cargo"]
+  },
+  {
+    abbr:"FOB", name:"Free On Board", mode:"sea", party:"buyer",
+    split:25,
+    sellerZone:"Export clearance + loaded onto vessel",
+    buyerZone:"Ocean freight + insurance + import",
+    sellerDoes:["Clears goods for export","Loads goods onto the vessel at named port","Risk and cost transfer once goods are on board"],
+    buyerDoes:["Pays ocean freight","Obtains cargo insurance","Bears risk from the moment goods are on board","Handles import customs and duties"],
+    def:"One of the most commonly used Incoterms. The seller loads goods onto the nominated vessel. Risk transfers once goods are on board. FOB should only be used for non-containerized ocean freight — not for containers (use FCA instead).",
+    tip:"⚠️ FOB is frequently misused for containerized cargo. Once goods are in a container at the terminal, the seller has lost control. Use FCA for container shipments. FOB is correct for bulk/breakbulk cargo.",
+    badges:["Sea Only","Very Common"]
+  },
+  {
+    abbr:"CFR", name:"Cost and Freight", mode:"sea", party:"balanced",
+    split:25,
+    sellerZone:"Export + ocean freight paid",
+    buyerZone:"Risk during voyage + insurance + import",
+    sellerDoes:["Clears goods for export","Loads goods onto vessel","Pays ocean freight to destination port","Provides bill of lading"],
+    buyerDoes:["Bears all risk from the moment goods are on board","Arranges cargo insurance","Handles import customs and duties"],
+    def:"The seller pays ocean freight to the destination port, but risk transfers when goods are loaded on board the vessel at the port of shipment. Like FOB but the seller pays freight. Should only be used for non-containerized cargo.",
+    tip:"⚠️ Same container-use warning as FOB — seller pays freight but risk passes at origin port. Buyer has risk during the voyage they didn't book. Consider CIP for air or containerized shipments.",
+    badges:["Sea Only","Seller Pays Freight"]
+  },
+  {
+    abbr:"CIF", name:"Cost, Insurance and Freight", mode:"sea", party:"balanced",
+    split:25,
+    sellerZone:"Export + ocean freight + minimum insurance",
+    buyerZone:"Risk during voyage + import",
+    sellerDoes:["Clears goods for export","Loads goods onto vessel","Pays ocean freight to destination port","Provides minimum cargo insurance (Institute Cargo Clauses C)","Provides bill of lading and insurance certificate"],
+    buyerDoes:["Bears risk from when goods are loaded on vessel","Handles import customs and duties","May want to purchase additional insurance"],
+    def:"The seller pays freight and minimum insurance to the destination port. However, risk transfers at the origin port when goods are loaded. CIF is commonly used for commodity trade and letter of credit transactions. Note: CIF insurance (ICC C) is minimum coverage only.",
+    tip:"ℹ️ CIF insurance is minimum (ICC C — named perils only). For better coverage use CIP which requires ICC A (all-risks). CIF is heavily used in commodity trade because L/C banks require it.",
+    badges:["Sea Only","Seller Insures"]
+  }
 ];
 
-const CATEGORIES = [...new Set(TERMS.map(t => t.cat))].sort();
-
-let activeFilter = 'all';
-let searchQuery = '';
-
-function highlight(text, query) {
-  if (!query) return text;
-  const re = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-  return text.replace(re, '<mark>$1</mark>');
-}
-
-function getFiltered() {
-  return TERMS.filter(t => {
-    const catMatch = activeFilter === 'all' || t.cat === activeFilter;
-    if (!catMatch) return false;
-    if (!searchQuery) return true;
-    const q = searchQuery.toLowerCase();
-    return t.term.toLowerCase().includes(q)
-      || (t.abbr && t.abbr.toLowerCase().includes(q))
-      || t.def.toLowerCase().includes(q)
-      || t.cat.toLowerCase().includes(q);
-  });
-}
-
-function render() {
-  const filtered = getFiltered();
-  const content = document.getElementById('glossaryContent');
-  const noResults = document.getElementById('noResults');
-  const searchCount = document.getElementById('searchCount');
-
-  if (searchQuery) {
-    searchCount.textContent = `${filtered.length} of ${TERMS.length} terms match`;
-  } else {
-    searchCount.textContent = '';
-  }
-
-  if (filtered.length === 0) {
-    content.innerHTML = '';
-    noResults.style.display = 'block';
-    return;
-  }
-  noResults.style.display = 'none';
-
-  // Group by letter
-  const byLetter = {};
-  filtered.forEach(t => {
-    const l = t.term[0].toUpperCase();
-    if (!byLetter[l]) byLetter[l] = [];
-    byLetter[l].push(t);
-  });
-
-  const letters = Object.keys(byLetter).sort();
-
-  // Update alpha nav
-  const alphaNav = document.getElementById('alphaNav');
-  alphaNav.innerHTML = '';
-  'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach(l => {
-    const btn = document.createElement('button');
-    btn.className = 'alpha-btn' + (byLetter[l] ? ' has-terms' : '');
-    btn.textContent = l;
-    btn.disabled = !byLetter[l];
-    if (byLetter[l]) {
-      btn.onclick = () => {
-        document.getElementById('section-' + l)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      };
-    }
-    alphaNav.appendChild(btn);
-  });
-
-  content.innerHTML = letters.map(l => `
-    <div class="letter-section" id="section-${l}">
-      <div class="letter-header">
-        <span class="letter-label">${l}</span>
-        <div class="letter-line"></div>
+function buildCard(t) {
+  const splitPct = t.split;
+  return `
+  <div class="incoterm-card" data-mode="${t.mode}" data-party="${t.party}" id="card-${t.abbr}">
+    <div class="card-header" onclick="toggleCard('${t.abbr}')">
+      <div class="card-abbr">${t.abbr}</div>
+      <div class="card-title-wrap">
+        <div class="card-title">${t.name}</div>
+        <div class="card-subtitle">${t.mode === 'sea' ? '🚢 Sea & inland waterway only' : '✈️ Any mode of transport'}</div>
       </div>
-      <div class="terms-grid">
-        ${byLetter[l].map(t => `
-          <div class="term-card">
-            <div class="term-top">
-              <div class="term-name">${highlight(t.term, searchQuery)}</div>
-              ${t.abbr ? `<span class="term-abbr">${highlight(t.abbr, searchQuery)}</span>` : ''}
-            </div>
-            <p class="term-def">${highlight(t.def, searchQuery)}</p>
-            <span class="term-cat cat-color-${t.cat}">${t.cat.replace(/-/g, ' ')}</span>
-          </div>
-        `).join('')}
+      <div class="card-badges">
+        ${t.badges.map(b => `<span class="badge badge-mode">${b}</span>`).join('')}
       </div>
+      <span class="chevron">▼</span>
     </div>
-  `).join('');
+    <div class="card-body">
+      <div class="journey">
+        <div class="journey-label">Risk & cost responsibility</div>
+        <div class="journey-track">
+          <div class="journey-seller" style="width:${splitPct}%">
+            <span class="journey-end left">🏭 SELLER</span>
+          </div>
+          <div class="journey-buyer" style="width:${100-splitPct}%">
+            <span class="journey-end right">🏢 BUYER</span>
+          </div>
+          <div class="journey-split" style="left:${splitPct}%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:1.5rem;font-family:var(--mono);font-size:0.6rem;color:var(--fog);">
+          <span>← Seller pays & bears risk</span>
+          <span>Buyer pays & bears risk →</span>
+        </div>
+      </div>
+      <p class="card-def">${t.def}</p>
+      <div class="card-grid">
+        <div class="card-section">
+          <h4>🟢 Seller is responsible for</h4>
+          <ul>${t.sellerDoes.map(d=>`<li>${d}</li>`).join('')}</ul>
+        </div>
+        <div class="card-section">
+          <h4>🔴 Buyer is responsible for</h4>
+          <ul>${t.buyerDoes.map(d=>`<li>${d}</li>`).join('')}</ul>
+        </div>
+      </div>
+      <div class="tip-box"><strong>Pro Tip</strong>${t.tip}</div>
+    </div>
+  </div>`;
 }
 
-function buildCategoryBar() {
-  const bar = document.getElementById('categoryBar');
-  const catLabels = {
-    documentation: 'Documentation',
-    shipping: 'Incoterms & Shipping',
-    classification: 'Classification',
-    duties: 'Duties & Taxes',
-    parties: 'Trade Parties',
-    finance: 'Finance & Bonds',
-    valuation: 'Valuation',
-    compliance: 'Compliance',
-    logistics: 'Logistics',
-    'trade-agreements': 'Trade Agreements'
-  };
-  CATEGORIES.forEach(cat => {
-    const btn = document.createElement('button');
-    btn.className = 'cat-btn';
-    btn.dataset.cat = cat;
-    btn.textContent = catLabels[cat] || cat;
-    btn.onclick = () => {
-      activeFilter = cat;
-      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      render();
-    };
-    bar.appendChild(btn);
+function toggleCard(abbr) {
+  const card = document.getElementById('card-'+abbr);
+  card.classList.toggle('open');
+}
+
+function filterMode(mode) {
+  document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.incoterm-card').forEach(c=>{
+    const m = c.dataset.mode;
+    const p = c.dataset.party;
+    let show = true;
+    if(mode==='sea') show = m==='sea';
+    else if(mode==='any') show = m==='any';
+    else if(mode==='seller') show = p==='seller';
+    else if(mode==='buyer') show = p==='buyer';
+    c.style.display = show ? '' : 'none';
   });
 }
 
-document.querySelector('[data-cat="all"]').onclick = function() {
-  activeFilter = 'all';
-  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-  this.classList.add('active');
-  render();
-};
-
-document.getElementById('searchInput').addEventListener('input', e => {
-  searchQuery = e.target.value.trim();
-  render();
-});
-
-document.getElementById('navStats').textContent = `${TERMS.length} TERMS · ${CATEGORIES.length} CATEGORIES`;
-
-buildCategoryBar();
-render();
+document.getElementById('incotermsList').innerHTML = INCOTERMS.map(buildCard).join('');
 </script>
 </body>
 </html>
